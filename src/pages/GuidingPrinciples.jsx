@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiArrowDown, FiArrowRight } from 'react-icons/fi'
-
+// demo
 const GuidingPrinciples = () => {
   const [expandedItem, setExpandedItem] = useState(0) 
 
