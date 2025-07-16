@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiArrowDown, FiArrowRight } from 'react-icons/fi'
 
 const GuidingPrinciples = () => {
-  const [expandedItem, setExpandedItem] = useState(0) // First item expanded by default
+  const [expandedItem, setExpandedItem] = useState(0) 
 
   const principles = [
     {
