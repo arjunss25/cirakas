@@ -169,8 +169,10 @@ const About = () => {
 </div>
 
       {/* card-section */}
+      <div className="cards-section-main w-full flex items-center justify-center px-4">
+
       <motion.div 
-        className="mt-20 sm:mt-24 md:mt-28 lg:mt-32 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-6 lg:flex-nowrap"
+        className="mt-20 sm:mt-24 md:mt-28 lg:mt-32 flex flex-wrap lg:flex-nowrap items-center justify-center gap-8 w-full max-w-[1600px]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -186,11 +188,14 @@ const About = () => {
               delay: idx * 0.2,
               ease: [0.76, 0, 0.24, 1]
             }}
+            className="w-full sm:w-[calc(50%-1rem)] lg:w-[33.333%]"
           >
             <Card {...card} />
           </motion.div>
         ))}
       </motion.div>
+
+      </div>
     </motion.div>
   );
 };

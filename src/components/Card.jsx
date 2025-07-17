@@ -7,7 +7,7 @@ const Card = ({
   description = "Our collective progress is our greatest achievement. We invest in each other's development, fostering an environment of continuous growth.",
 }) => {
   return (
-    <div className='group w-full sm:w-[18rem] md:w-[20rem] xl:w-[26rem] h-[30rem] md:h-[35rem] rounded-[1.5rem] bg-green-200 flex items-end justify-center p-2 sm:p-3 md:p-4 relative overflow-hidden'>
+    <div className='group w-full h-[30rem] md:h-[35rem] rounded-[1.5rem] bg-green-200 flex items-end justify-center p-2 sm:p-3 md:p-4 relative overflow-hidden lg:mx-4'>
       {/* Background Image */}
       <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover rounded-[1.5rem] z-0" />
       <div className="content-section w-full h-[8rem] bg-white/80 rounded-[1.5rem] flex flex-col items-center group-hover:items-start justify-center group-hover:justify-start p-2 sm:p-3 md:p-4 transition-all duration-500 ease-in-out group-hover:h-[14rem] group-hover:p-6 overflow-hidden z-10 relative">
