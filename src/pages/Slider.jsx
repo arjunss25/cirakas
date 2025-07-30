@@ -5,26 +5,18 @@ const Slider = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   const images = [
-    "/about1.png",
-    "/about2.png",
-    "/about3.png",
-    "/description1.png",
-    "/about1.png",
-    "/about1.png",
-    "/about2.png",
-    "/about3.png",
-    "/description1.png",
-    "/about1.png",
-    "/about1.png",
-    "/about2.png",
-    "/about3.png",
-    "/description1.png",
-    "/about1.png",
-    "/about1.png",
-    "/about2.png",
-    "/about3.png",
-    "/description1.png",
-    "/about1.png"
+    "/1 (1).jpeg",
+    "/1 (2).jpeg",
+    "/1 (3).jpeg",
+    "/1 (4).jpeg",
+    "/1 (5).jpeg",
+    "/1 (6).jpeg",
+    "/1 (7).jpeg",
+    "/1 (8).jpeg",
+    "/1 (9).jpeg",
+    "/1 (11).jpeg",
+    "/1 (12).jpeg",
+
   ];
 
   // Arc settings for static layout
