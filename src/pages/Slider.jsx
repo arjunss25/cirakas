@@ -1,40 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { BsArrowUpRightCircle } from 'react-icons/bs';
 
 const Slider = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   const images = [
-    "/1 (1).jpeg",
-    "/1 (2).jpeg",
-    "/1 (3).jpeg",
-    "/1 (4).jpeg",
-    "/1 (5).jpeg",
-    "/1 (6).jpeg",
-    "/1 (7).jpeg",
-    "/1 (8).jpeg",
-    "/1 (9).jpeg",
-    "/1 (11).jpeg",
+    "/2 (1).jpg",
+    "/2 (3).jpg",
+    "/z (3).jpeg",
+    "/2 (4).jpg",
+    "/z (5).jpeg",
+    "/2 (6).jpg",
+    "/1 (10).jpeg",
     "/1 (12).jpeg",
-
   ];
 
   // Arc settings for static layout
   const arcSettings = [
-    { rotate: "-15deg", top: "30px" },
-    { rotate: "-7deg", top: "10px" },
-    { rotate: "0deg", top: "0px" },
-    { rotate: "7deg", top: "10px" },
-    { rotate: "15deg", top: "30px" },
+    { rotate: "-15deg", top: "40px" },
+    { rotate: "-7deg", top: "20px" },
+    { rotate: "0deg", top: "10px" },
+    { rotate: "7deg", top: "20px" },
+    { rotate: "15deg", top: "40px" },
   ];
-
-  // Create enough duplicates for seamless animation
-  const marqueeImages = [...images, ...images];
-  const marqueeArc = [...arcSettings, ...arcSettings];
 
   // Handlers for pausing/resuming animation
   const handleMouseEnter = () => setIsPaused(true);
   const handleMouseLeave = () => setIsPaused(false);
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact-section');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className='w-full p-4 sm:p-6 md:p-8 bg-white'>
@@ -57,62 +56,125 @@ const Slider = () => {
       </div>
 
       {/* Infinite Marquee Arc Image Row */}
-      <div className="w-full overflow-hidden mt-12 px-4 sm:px-12 md:px-24 lg:px-32 h-[50vh] flex justify-center items-center">
-        <div
-          className={`flex gap-4 sm:gap-6 animate-marquee${isPaused ? ' paused' : ''}`}
-          style={{ 
-            width: 'fit-content',
-            minWidth: '100%',
-            willChange: 'transform'
-          }}
+      <div className="w-full overflow-hidden mt-12 px-4 h-[50vh] flex justify-center items-center">
+        <div 
+          className="marquee-container"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {marqueeImages.map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`slide${i}`}
-              className="w-40 h-40 sm:w-56 sm:h-56 md:w-64 md:h-64 object-cover rounded-xl shadow-lg flex-shrink-0"
-              style={{
-                transform: `rotate(${marqueeArc[i % arcSettings.length].rotate})`,
-                marginTop: marqueeArc[i % arcSettings.length].top
-              }}
-            />
-          ))}
+          <div className={`marquee-track ${isPaused ? 'paused' : ''}`}>
+            {/* First set of images */}
+            <div className="marquee-set">
+              {images.map((src, i) => (
+                <img
+                  key={`set1-${i}`}
+                  src={src}
+                  alt={`slide${i}`}
+                  className="marquee-image"
+                  style={{
+                    transform: `rotate(${arcSettings[i % arcSettings.length].rotate})`,
+                    marginTop: arcSettings[i % arcSettings.length].top
+                  }}
+                />
+              ))}
+            </div>
+            
+            {/* Duplicate set for seamless loop */}
+            <div className="marquee-set">
+              {images.map((src, i) => (
+                <img
+                  key={`set2-${i}`}
+                  src={src}
+                  alt={`slide${i}`}
+                  className="marquee-image"
+                  style={{
+                    transform: `rotate(${arcSettings[i % arcSettings.length].rotate})`,
+                    marginTop: arcSettings[i % arcSettings.length].top
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Get In Touch Button */}
-      <div className="explore-btn group flex items-center justify-center">
-            <button className="bg-[#FF4B26] text-[0.875rem] sm:text-[1rem] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-[#e63e1d] transition-all duration-300 whitespace-nowrap">
-              Get In Touch
-            </button>
-            <div className="arrow-icon text-[1.25rem] sm:text-[1.5rem] p-2.5 sm:p-3 flex items-center justify-center rounded-full text-white bg-[#FF4B26] -ml-2 group-hover:ml-2 transition-all duration-300">
-              <BsArrowUpRightCircle />
-            </div>
-          </div>
+      {/* <div className="explore-btn group flex items-center justify-center mt-8">
+        <button 
+          onClick={scrollToContact}
+          className="bg-[#FF4B26] text-[0.875rem] sm:text-[1rem] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-[#e63e1d] transition-all duration-300 whitespace-nowrap cursor-pointer"
+        >
+          Get In Touch
+        </button>
+        <div className="arrow-icon text-[1.25rem] sm:text-[1.5rem] p-2.5 sm:p-3 flex items-center justify-center rounded-full text-white bg-[#FF4B26] -ml-2 group-hover:ml-2 transition-all duration-300">
+          <BsArrowUpRightCircle />
+        </div>
+      </div> */}
 
-      {/* Marquee animation keyframes */}
+      {/* Seamless Marquee CSS */}
       <style>{`
-        @keyframes marquee {
-          0% { 
-            transform: translateX(0); 
-          }
-          100% { 
-            transform: translateX(-50%); 
-          }
+        .marquee-container {
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          padding-bottom: 2rem;
         }
-        .animate-marquee {
-          animation: marquee 20s linear infinite;
-          animation-play-state: running;
+
+        .marquee-track {
+          display: flex;
+          width: fit-content;
+          animation: seamless-marquee 60s linear infinite;
+          will-change: transform;
         }
-        .animate-marquee.paused {
+
+        .marquee-track.paused {
           animation-play-state: paused;
+        }
+
+        .marquee-set {
+          display: flex;
+          gap: 1rem;
+          flex-shrink: 0;
+        }
+
+        .marquee-image {
+          width: 9rem;
+          height: 9rem;
+          object-fit: cover;
+          border-radius: 0.75rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          flex-shrink: 0;
+          margin-bottom: 1rem;
+        }
+
+        @media (min-width: 640px) {
+          .marquee-set {
+            gap: 1.5rem;
+          }
+          .marquee-image {
+            width: 12rem;
+            height: 12rem;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .marquee-image {
+            width: 14rem;
+            height: 14rem;
+          }
+        }
+
+        @keyframes seamless-marquee {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
         }
       `}</style>
     </div>
   );
-}
+};
 
-export default Slider
+export default Slider;

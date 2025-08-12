@@ -9,11 +9,111 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToSection = (sectionId) => {
+    console.log('Scrolling to section:', sectionId); // Debug log
+    const element = document.getElementById(sectionId);
+    if (element) {
+      console.log('Element found:', element); // Debug log
+      // Close mobile menu first
+      setIsMenuOpen(false);
+      
+      // Use setTimeout to ensure menu closes before scrolling
+      setTimeout(() => {
+        try {
+          // Get element position
+          const rect = element.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetPosition = rect.top + scrollTop - 100; // Offset by 100px for better positioning
+          
+          // Try smooth scrolling first
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+          
+          // Fallback: if smooth scroll doesn't work, use window.scrollTo
+          setTimeout(() => {
+            if (window.pageYOffset < targetPosition - 10 || window.pageYOffset > targetPosition + 10) {
+              console.log('Using fallback scroll method');
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 300);
+          
+        } catch (error) {
+          console.log('Smooth scroll failed, using instant scroll:', error);
+          // Fallback to instant scroll if smooth scrolling fails
+          element.scrollIntoView({ 
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      }, 100);
+    } else {
+      console.log('Element not found for ID:', sectionId); // Debug log
+      // Fallback: try to scroll to top if section not found
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const scrollToContact = () => {
+    console.log('Scrolling to contact section'); // Debug log
+    const contactSection = document.getElementById('contact-section');
+    if (contactSection) {
+      console.log('Contact section found'); // Debug log
+      // Close mobile menu first
+      setIsMenuOpen(false);
+      
+      // Use setTimeout to ensure menu closes before scrolling
+      setTimeout(() => {
+        try {
+          // Get element position
+          const rect = contactSection.getBoundingClientRect();
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          const targetPosition = rect.top + scrollTop - 100; // Offset by 100px for better positioning
+          
+          // Try smooth scrolling first
+          contactSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start',
+            inline: 'nearest'
+          });
+          
+          // Fallback: if smooth scroll doesn't work, use window.scrollTo
+          setTimeout(() => {
+            if (window.pageYOffset < targetPosition - 10 || window.pageYOffset > targetPosition + 10) {
+              console.log('Using fallback scroll method for contact');
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }, 300);
+          
+        } catch (error) {
+          console.log('Smooth scroll failed, using instant scroll:', error);
+          // Fallback to instant scroll if smooth scrolling fails
+          contactSection.scrollIntoView({ 
+            block: 'start',
+            inline: 'nearest'
+          });
+        }
+      }, 100);
+    } else {
+      console.log('Contact section not found'); // Debug log
+      // Fallback: try to scroll to bottom if contact section not found
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  };
+
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About Us', href: '#' },
-    { name: 'Values', href: '#' },
-    { name: 'Products', href: '#' },
+    { name: 'Home', href: '#home', sectionId: 'home' },
+    { name: 'About Us', href: '#about', sectionId: 'about' },
+    { name: 'Values', href: '#values', sectionId: 'values' },
+    { name: 'Products', href: '#products', sectionId: 'products' },
   ];
 
   // Menu button lines animation variants
@@ -79,10 +179,11 @@ const Navbar = () => {
       <nav className="w-full h-[12vh] flex items-center justify-between px-4 md:px-8 lg:px-16 relative z-50 bg-white/80 backdrop-blur-md">
         {/* Logo */}
         <motion.div
-          className="flex items-center"
+          className="flex items-center cursor-pointer"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <img src="/logo.png" alt="Cirakas Logo" className="h-6 md:h-8" />
         </motion.div>
@@ -95,10 +196,10 @@ const Navbar = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {navLinks.map((link, index) => (
-            <motion.a
+            <motion.button
               key={link.name}
-              href={link.href}
-              className="relative text-gray-600 hover:text-gray-900 font-medium transition-colors group"
+              onClick={() => scrollToSection(link.sectionId)}
+              className="relative text-gray-600 hover:text-gray-900 font-medium transition-colors group cursor-pointer"
               whileHover={{ y: -2 }}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,7 +207,7 @@ const Navbar = () => {
             >
               {link.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FF4B26] to-[#FF6B4A] group-hover:w-full transition-all duration-300"></span>
-            </motion.a>
+            </motion.button>
           ))}
           <motion.div
             className="contact-btn flex items-center group"
@@ -114,7 +215,10 @@ const Navbar = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            <button className="bg-[#FF4B26] text-[0.875rem] sm:text-[1rem] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-[#e63e1d] transition-colors duration-300 whitespace-nowrap">
+            <button 
+              onClick={scrollToContact}
+              className="bg-[#FF4B26] text-[0.875rem] sm:text-[1rem] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-[#e63e1d] transition-colors duration-300 whitespace-nowrap cursor-pointer"
+            >
               Contact Us
             </button>
             <div className="arrow-icon text-[1.25rem] sm:text-[1.5rem] p-2.5 sm:p-3 flex items-center justify-center rounded-full text-white bg-[#FF4B26] -ml-2 transform group-hover:translate-x-4 transition-transform duration-300">
@@ -214,10 +318,9 @@ const Navbar = () => {
                   variants={menuItemVariants}
                   className="overflow-hidden"
                 >
-                  <motion.a
-                    href={link.href}
-                    className="group flex items-center text-2xl font-medium text-gray-800 hover:text-[#FF4B26] transition-colors duration-300"
-                    onClick={() => setIsMenuOpen(false)}
+                  <motion.button
+                    onClick={() => scrollToSection(link.sectionId)}
+                    className="group flex items-center text-2xl font-medium text-gray-800 hover:text-[#FF4B26] transition-colors duration-300 cursor-pointer"
                     whileHover={{ x: 16 }}
                   >
                     <span className="relative">
@@ -235,7 +338,7 @@ const Navbar = () => {
                     >
                       <BsArrowUpRightCircle size={20} className="text-[#FF4B26]" />
                     </motion.div>
-                  </motion.a>
+                  </motion.button>
                 </motion.div>
               ))}
 
@@ -247,7 +350,10 @@ const Navbar = () => {
                   className="flex items-center group"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <button className="bg-[#FF4B26] text-white px-6 py-3 rounded-full text-base hover:bg-[#e63e1d] transition-colors duration-300">
+                  <button 
+                    onClick={scrollToContact}
+                    className="bg-[#FF4B26] text-white px-6 py-3 rounded-full text-base hover:bg-[#e63e1d] transition-colors duration-300 cursor-pointer"
+                  >
                     Contact Us
                   </button>
                   <div className="arrow-icon text-xl p-3 flex items-center justify-center rounded-full text-white bg-[#FF4B26] -ml-2 transform group-hover:translate-x-4 transition-transform duration-300">

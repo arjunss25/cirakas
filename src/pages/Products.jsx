@@ -9,13 +9,10 @@ const ProductsShowcase = () => {
   const projects = [
     {
       id: '01',
-      title: 'Community Application',
-      description: 'Community Application',
+      title: 'Heart Flow Med',
+      description: 'Heart Flow Med',
       images: [
-        'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=100&h=80&fit=crop&crop=faces',
-        'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=100&h=80&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=100&h=80&fit=crop&crop=center',
-        'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=100&h=80&fit=crop&crop=center'
+        '/HFM- Ver_Blue Logo- Horizontal.svg',
       ],
       color: 'bg-gray-100 text-black'
     },
@@ -24,7 +21,7 @@ const ProductsShowcase = () => {
       title: 'DictateMed',
       description: 'DictateMed',
       images: [
-        'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=100&h=80&fit=crop&crop=faces'
+        '/DictateMed.png'
       ],
       color: 'bg-gray-100 text-black'
     },
@@ -33,7 +30,7 @@ const ProductsShowcase = () => {
       title: 'PracticeMed',
       description: 'PracticeMed',
       images: [
-        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=100&h=80&fit=crop&crop=center'
+        '/practice med.svg'
       ],
       color: 'bg-gray-100 text-black'
     },
@@ -42,7 +39,7 @@ const ProductsShowcase = () => {
       title: 'PREP',
       description: 'PREP',
       images: [
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=80&fit=crop&crop=faces'
+        '/HFM- Ver_Blue Logo- Horizontal.svg'
       ],
       color: 'bg-gray-100 text-black'
     },
@@ -51,14 +48,14 @@ const ProductsShowcase = () => {
       title: 'SynapseMed',
       description: 'SynapseMed',
       images: [
-        'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=100&h=80&fit=crop&crop=center'
+        '/SynapseMed Logo.svg'
       ],
       color: 'bg-gray-100 text-black'
     }
   ];
 
   return (
-    <div className=" bg-white p-4 sm:p-6 md:p-8">
+    <div className=" bg-white p-4 sm:p-6 md:p-8" id="products">
       <div className="max-w-[90vw] mx-auto">
         {/* Header */}
         <div className="mb-5">
@@ -109,12 +106,12 @@ const ProductsShowcase = () => {
                         {imagesToShow.map((image, imgIndex) => (
                           <div
                             key={imgIndex}
-                            className="w-12 h-8 sm:w-16 sm:h-12 rounded-lg overflow-hidden shadow-md bg-white"
+                            className="shadow-md bg-white p-2 w-25 h-12 sm:w-40 sm:h-20 rounded-[1rem]"
                           >
                             <img
                               src={image}
                               alt={`${project.title} preview ${imgIndex + 1}`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                             />
                           </div>
                         ))}
@@ -126,12 +123,12 @@ const ProductsShowcase = () => {
                         {imagesToShow.map((image, imgIndex) => (
                           <div
                             key={imgIndex}
-                            className="w-12 h-8 sm:w-16 sm:h-12 rounded-lg overflow-hidden shadow-md bg-white"
+                            className="shadow-md bg-white w-25 h-12 sm:w-40 sm:h-20 p-2 rounded-[1rem]"
                           >
                             <img
                               src={image}
                               alt={`${project.title} preview ${imgIndex + 1}`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                             />
                           </div>
                         ))}

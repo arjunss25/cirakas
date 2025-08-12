@@ -18,6 +18,13 @@ const LandingPage = () => {
     }
   }, [isInView, animate]);
 
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const words = ["More", "Than", "Colleagues,", "We're", "Family", "."];
 
   return (
@@ -26,10 +33,11 @@ const LandingPage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="w-full h-[90vh] px-2 sm:px-5 pb-10 flex items-center justify-center"
+      id="home"
     >
       <div className="main relative w-full h-full rounded-[2rem] flex flex-col justify-between overflow-hidden">
         <motion.div 
-          className="absolute inset-0 bg-[url(/bg-img.png)] bg-no-repeat bg-cover bg-center"
+          className="absolute inset-0 bg-[url(/bg.png)] bg-no-repeat bg-cover bg-center"
           initial={{ scale: 1.2 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: [0.76, 0, 0.24, 1] }}
@@ -73,7 +81,8 @@ const LandingPage = () => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.button 
-              className="bg-[#FF4B26] text-[0.875rem] sm:text-[1rem] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-[#e63e1d] transition-all duration-300 whitespace-nowrap"
+              onClick={scrollToAbout}
+              className="bg-[#FF4B26] text-[0.875rem] sm:text-[1rem] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-[#e63e1d] transition-all duration-300 whitespace-nowrap cursor-pointer"
               whileHover={{ backgroundColor: "#e63e1d" }}
             >
               Explore Our Culture

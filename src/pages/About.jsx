@@ -8,19 +8,19 @@ const aboutCards = [
     number: '01',
     title: 'Shared Growth',
     description: "Our collective progress is our greatest achievement. We invest in each other's development, fostering an environment of continuous growth.",
-    image: '/about1.png',
+    image: '/nw4.png',
   },
   {
     number: '02',
     title: 'Transparent Talk',
     description: "Transparency and honesty are at the heart of our team. We encourage open dialogue and value every voice.",
-    image: '/about2.png',
+    image: '/z (4).png',
   },
   {
     number: '03',
     title: 'Mutual Support',
     description: "We stand by each other through challenges and celebrate our successes as one.",
-    image: '/about3.png',
+    image: '/nw4.png',
   },
 ];
 
@@ -78,6 +78,7 @@ const About = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className="w-full px-4 sm:px-6 md:px-10 py-10 sm:py-16 md:py-10"
+      id="about"
     >
       <motion.div 
         className="btn-section w-full flex items-center justify-center"
