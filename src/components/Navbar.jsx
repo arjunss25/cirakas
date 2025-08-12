@@ -1,111 +1,133 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsArrowUpRightCircle } from 'react-icons/bs';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Cleanup effect to restore scroll if component unmounts
+  useEffect(() => {
+    return () => {
+      if (isMenuOpen) {
+        toggleBodyScroll(false);
+      }
+    };
+  }, [isMenuOpen]);
+
+  // Function to lock/unlock body scroll
+  const toggleBodyScroll = (lock) => {
+    if (lock) {
+      // Lock scroll
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      // Unlock scroll
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+  };
+
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    const newMenuState = !isMenuOpen;
+    setIsMenuOpen(newMenuState);
+    toggleBodyScroll(newMenuState);
   };
 
   const scrollToSection = (sectionId) => {
-    console.log('Scrolling to section:', sectionId); // Debug log
     const element = document.getElementById(sectionId);
     if (element) {
-      console.log('Element found:', element); // Debug log
-      // Close mobile menu first
-      setIsMenuOpen(false);
+      // Close mobile menu first if it's open
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+        toggleBodyScroll(false); // Restore scroll
+      }
       
       // Use setTimeout to ensure menu closes before scrolling
+      const scrollDelay = isMenuOpen ? 300 : 0; // Longer delay for mobile menu close
+      
       setTimeout(() => {
         try {
-          // Get element position
           const rect = element.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const targetPosition = rect.top + scrollTop - 100; // Offset by 100px for better positioning
+          const targetPosition = rect.top + scrollTop - 100;
           
-          // Try smooth scrolling first
+          // Use window.scrollTo for more reliable scrolling
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+        } catch (error) {
+          // Fallback to scrollIntoView
           element.scrollIntoView({ 
             behavior: 'smooth',
             block: 'start',
             inline: 'nearest'
           });
-          
-          // Fallback: if smooth scroll doesn't work, use window.scrollTo
-          setTimeout(() => {
-            if (window.pageYOffset < targetPosition - 10 || window.pageYOffset > targetPosition + 10) {
-              console.log('Using fallback scroll method');
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }, 300);
-          
-        } catch (error) {
-          console.log('Smooth scroll failed, using instant scroll:', error);
-          // Fallback to instant scroll if smooth scrolling fails
-          element.scrollIntoView({ 
-            block: 'start',
-            inline: 'nearest'
-          });
         }
-      }, 100);
+      }, scrollDelay);
     } else {
-      console.log('Element not found for ID:', sectionId); // Debug log
-      // Fallback: try to scroll to top if section not found
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Close menu if open
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+        toggleBodyScroll(false); // Restore scroll
+      }
+      // Fallback: scroll to top
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, isMenuOpen ? 300 : 0);
     }
   };
 
   const scrollToContact = () => {
-    console.log('Scrolling to contact section'); // Debug log
     const contactSection = document.getElementById('contact-section');
     if (contactSection) {
-      console.log('Contact section found'); // Debug log
-      // Close mobile menu first
-      setIsMenuOpen(false);
+      // Close mobile menu first if it's open
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+        toggleBodyScroll(false); // Restore scroll
+      }
       
       // Use setTimeout to ensure menu closes before scrolling
+      const scrollDelay = isMenuOpen ? 300 : 0;
+      
       setTimeout(() => {
         try {
-          // Get element position
           const rect = contactSection.getBoundingClientRect();
           const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          const targetPosition = rect.top + scrollTop - 100; // Offset by 100px for better positioning
+          const targetPosition = rect.top + scrollTop - 100;
           
-          // Try smooth scrolling first
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+        } catch (error) {
           contactSection.scrollIntoView({ 
             behavior: 'smooth',
             block: 'start',
             inline: 'nearest'
           });
-          
-          // Fallback: if smooth scroll doesn't work, use window.scrollTo
-          setTimeout(() => {
-            if (window.pageYOffset < targetPosition - 10 || window.pageYOffset > targetPosition + 10) {
-              console.log('Using fallback scroll method for contact');
-              window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-              });
-            }
-          }, 300);
-          
-        } catch (error) {
-          console.log('Smooth scroll failed, using instant scroll:', error);
-          // Fallback to instant scroll if smooth scrolling fails
-          contactSection.scrollIntoView({ 
-            block: 'start',
-            inline: 'nearest'
-          });
         }
-      }, 100);
+      }, scrollDelay);
     } else {
-      console.log('Contact section not found'); // Debug log
-      // Fallback: try to scroll to bottom if contact section not found
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      // Close menu if open
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+        toggleBodyScroll(false); // Restore scroll
+      }
+      // Fallback: scroll to bottom
+      setTimeout(() => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }, isMenuOpen ? 300 : 0);
     }
   };
 
@@ -116,30 +138,16 @@ const Navbar = () => {
     { name: 'Products', href: '#products', sectionId: 'products' },
   ];
 
-  // Menu button lines animation variants
-  const lineVariants = {
-    closed: (i) => ({
-      rotate: 0,
-      y: i === 1 ? 0 : i === 0 ? -8 : 8,
-      width: "24px",
-    }),
-    open: (i) => ({
-      rotate: i === 1 ? 0 : i === 0 ? 45 : -45,
-      y: i === 1 ? 0 : i === 0 ? 0 : 0,
-      width: i === 1 ? "0px" : "24px",
-    }),
-  };
-
-  // Menu container animation variants
+  // Menu container animation variants - with faster exit for better scroll timing
   const menuContainerVariants = {
     closed: {
       clipPath: "circle(0% at calc(100% - 32px) 32px)",
       transition: {
         type: "spring",
-        stiffness: 400,
-        damping: 40,
+        stiffness: 600, // Increased for faster close
+        damping: 50,
         when: "afterChildren",
-        staggerChildren: 0.05,
+        staggerChildren: 0.02,
         staggerDirection: -1,
       },
     },
@@ -162,7 +170,8 @@ const Navbar = () => {
       y: 50,
       opacity: 0,
       transition: {
-        y: { stiffness: 1000 }
+        y: { stiffness: 1000 },
+        duration: 0.2, // Faster exit
       }
     },
     open: {
@@ -183,7 +192,12 @@ const Navbar = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            if (isMenuOpen) setIsMenuOpen(false);
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, isMenuOpen ? 300 : 0);
+          }}
         >
           <img src="/logo.png" alt="Cirakas Logo" className="h-6 md:h-8" />
         </motion.div>
@@ -304,7 +318,7 @@ const Navbar = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 bg-gradient-to-br from-white via-white/95 to-gray-50 z-40 lg:hidden overflow-hidden"
+            className="fixed inset-0 bg-gradient-to-br from-white via-white/95 to-gray-50 z-[400] lg:hidden overflow-hidden"
           >
             <motion.div
               className="h-full flex flex-col justify-center items-center p-6 space-y-6"
@@ -319,9 +333,12 @@ const Navbar = () => {
                   className="overflow-hidden"
                 >
                   <motion.button
-                    onClick={() => scrollToSection(link.sectionId)}
-                    className="group flex items-center text-2xl font-medium text-gray-800 hover:text-[#FF4B26] transition-colors duration-300 cursor-pointer"
+                    onClick={() => {
+                      scrollToSection(link.sectionId);
+                    }}
+                    className="group flex items-center text-2xl font-medium text-gray-800 hover:text-[#FF4B26] transition-colors duration-300 cursor-pointer relative z-10 pointer-events-auto"
                     whileHover={{ x: 16 }}
+                    whileTap={{ scale: 0.95 }} // Add tap feedback
                   >
                     <span className="relative">
                       {link.name}
@@ -349,10 +366,13 @@ const Navbar = () => {
                 <motion.div
                   className="flex items-center group"
                   whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }} // Add tap feedback
                 >
                   <button 
-                    onClick={scrollToContact}
-                    className="bg-[#FF4B26] text-white px-6 py-3 rounded-full text-base hover:bg-[#e63e1d] transition-colors duration-300 cursor-pointer"
+                    onClick={() => {
+                      scrollToContact();
+                    }}
+                    className="bg-[#FF4B26] text-white px-6 py-3 rounded-full text-base hover:bg-[#e63e1d] transition-colors duration-300 cursor-pointer relative z-10 pointer-events-auto"
                   >
                     Contact Us
                   </button>
@@ -362,33 +382,8 @@ const Navbar = () => {
                 </motion.div>
               </motion.div>
 
-              {/* Decorative Elements */}
-              <motion.div
-                className="absolute top-1/4 right-1/4 w-48 h-48 bg-gradient-to-br from-[#FF4B26]/10 to-[#FF6B4A]/5 rounded-full blur-3xl"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                  rotate: [0, 90, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <motion.div
-                className="absolute bottom-1/4 left-1/4 w-32 h-32 bg-gradient-to-tr from-[#FF6B4A]/10 to-[#FF4B26]/5 rounded-full blur-3xl"
-                animate={{
-                  scale: [1.2, 1, 1.2],
-                  opacity: [0.5, 0.3, 0.5],
-                  rotate: [90, 0, 90],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+              {/* Decorative Elements - REMOVED to fix navigation click issues */}
+              {/* These rotating elements were interfering with navigation clicks */}
             </motion.div>
           </motion.div>
         )}

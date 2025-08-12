@@ -36,15 +36,6 @@ const ProductsShowcase = () => {
     },
     {
       id: '04',
-      title: 'PREP',
-      description: 'PREP',
-      images: [
-        '/HFM- Ver_Blue Logo- Horizontal.svg'
-      ],
-      color: 'bg-gray-100 text-black'
-    },
-    {
-      id: '05',
       title: 'SynapseMed',
       description: 'SynapseMed',
       images: [

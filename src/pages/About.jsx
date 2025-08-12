@@ -8,19 +8,19 @@ const aboutCards = [
     number: '01',
     title: 'Shared Growth',
     description: "Our collective progress is our greatest achievement. We invest in each other's development, fostering an environment of continuous growth.",
-    image: '/nw4.png',
+    image: '/about1.png',
   },
   {
     number: '02',
     title: 'Transparent Talk',
     description: "Transparency and honesty are at the heart of our team. We encourage open dialogue and value every voice.",
-    image: '/z (4).png',
+    image: '/about2.png',
   },
   {
     number: '03',
     title: 'Mutual Support',
     description: "We stand by each other through challenges and celebrate our successes as one.",
-    image: '/nw4.png',
+    image: '/about3.png',
   },
 ];
 
