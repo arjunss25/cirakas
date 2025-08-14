@@ -69,10 +69,10 @@ const Footer = () => {
           onClick={scrollToTop}
           className="text-[72px] md:text-[96px] font-extrabold italic tracking-tight font-sans mb-2 select-none hover:scale-105 transition-transform duration-300 cursor-pointer"
         >
-          <span className="text-[#FF4B26]">cir</span><span className="text-[#6CB2F7]">akas</span>
+          <span className="text-[#FF4B26]">cira</span><span className="text-[#6CB2F7]">kas</span>
         </button>
         <div className="border-t border-[#222] w-full mt-2 pt-3 text-xs text-[#aaa] text-center">
-          © 2025 Cirakas Consulting Private Limited &nbsp;|&nbsp; All Rights Reserved &nbsp;|&nbsp; <a href="#" className="text-[#aaa] underline hover:text-[#FF4B26] transition-colors duration-300">Privacy Policy</a>
+          © 2025 Cirakas Consulting Private Limited &nbsp;|&nbsp; All Rights Reserved &nbsp;
         </div>
       </div>
     </footer>

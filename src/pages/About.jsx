@@ -144,7 +144,7 @@ const About = () => {
       >
         At Cirakas, we believe that true innovation and success stem from a foundation of strong relationships. We've cultivated a unique 'family' culture where every team member is valued, supported, and encouraged to thrive. Here, your colleagues aren't just co-workers; they're our brothers and sisters in a shared journey.
       </motion.p>
-      <motion.img
+      {/* <motion.img
         className="absolute left-1/2 transform -translate-x-1/2 bottom-[-2rem] sm:bottom-[-3rem] md:bottom-[-4rem] lg:bottom-[-5rem] 
                    w-[80%] sm:w-[70%] md:w-[40%] lg:w-[30%] max-w-[600px]
                    object-contain"
@@ -164,13 +164,13 @@ const About = () => {
           ease: "easeInOut",
           delay: isDescriptionInView ? 0.4 : 0
         }}
-      />
+      /> */}
     </div>
   </div>
 </div>
 
       {/* card-section */}
-      <div className="cards-section-main w-full flex items-center justify-center px-4">
+      {/* <div className="cards-section-main w-full flex items-center justify-center px-4">
 
       <motion.div 
         className="mt-20 sm:mt-24 md:mt-28 lg:mt-32 flex flex-wrap lg:flex-nowrap items-center justify-center gap-8 w-full max-w-[1600px]"
@@ -196,7 +196,7 @@ const About = () => {
         ))}
       </motion.div>
 
-      </div>
+      </div> */}
     </motion.div>
   );
 };

@@ -1,124 +1,280 @@
-import React from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 const TestimonialMarquee = () => {
-  const testimonials = [
-    {
-      name: "Cody Fisher",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Esther Howard",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1494790108755-2616b69d55b2?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Wade Warren",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Robert Fox",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Bessie Cooper",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Brooklyn Simmons",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Devon Lane",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=40&h=40&fit=crop&crop=face&auto=format"
-    },
-    {
-      name: "Cameron Williamson",
-      handle: "@john",
-      text: "I'm at a loss for words. This is amazing. I love it.",
-      avatar: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=40&h=40&fit=crop&crop=face&auto=format"
-    }
-  ];
+  const [isPaused, setIsPaused] = useState(false);
+  const [loadedImages, setLoadedImages] = useState(new Set());
 
-  const TestimonialCard = ({ testimonial }) => (
-    <div className="bg-black rounded-lg p-4 w-80 flex-shrink-0 mx-3">
-      <div className="flex items-center mb-3">
-        <img 
-          src={testimonial.avatar} 
-          alt={testimonial.name}
-          className="w-10 h-10 rounded-full mr-3"
-        />
-        <div>
-          <div className="text-white font-medium text-sm">{testimonial.name}</div>
-          <div className="text-gray-500 text-xs">{testimonial.handle}</div>
+  const teamMembers = useMemo(() => [
+    {
+      id: 1,
+      name: "Harish Nair",
+      role: "Director",
+      image: "/harish.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "harish@cirakas.com"
+    },
+    {
+      id: 3,
+      name: "Dr. Rajalekshmi S",
+      role: "Head of Projects & Operations",
+      image: "/raji.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "rajalekshmi@cirakas.com"
+    },
+    {
+      id: 4,
+      name: "Samir Sirajudeen",
+      role: "Office Admin",
+      image: "/samir.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "samir@cirakas.com"
+    },
+    {
+      id: 5,
+      name: "Usman N",
+      role: "Secretary to the CEO",
+      image: "/usman.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "usman@cirakas.com"
+    },
+    {
+      id: 6,
+      name: "Sreejith K J",
+      role: "Secretary to the CTO",
+      image: "/sreejth.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "sreejith@cirakas.com"
+    },
+    {
+      id: 7,
+      name: "Minu S",
+      role: "Test Engineer",
+      image: "/minu.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "minu@cirakas.com"
+    },
+    {
+      id: 8,
+      name: "Naina Sayed",
+      role: "Senior Software Engineer",
+      image: "/naina.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "naina@cirakas.com"
+    },
+    {
+      id: 9,
+      name: "Amal Babu",
+      role: "Mobile Developer",
+      image: "/amal.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "amal@cirakas.com"
+    },
+    {
+      id: 10,
+      name: "Gokul Suresh",
+      role: "Software Developer",
+      image: "/gokul.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "gokul@cirakas.com"
+    },
+    {
+      id: 11,
+      name: "Tibu Padmakumar",
+      role: "Technical Project Manager",
+      image: "/tibu.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "tibu@cirakas.com"
+    },
+    {
+      id: 12,
+      name: "Aravind A Sajeev",
+      role: "UI/UX Designer",
+      image: "/aravind.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "aravind@cirakas.com"
+    },
+    {
+      id: 13,
+      name: "Arjun S S",
+      role: "Front-End Developer",
+      image: "/arjun.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "arjun@cirakas.com"
+    },
+    {
+      id: 14,
+      name: "Rohith Gomez",
+      role: "Python Developer",
+      image: "/rohith.svg",
+      linkedin: "#",
+      twitter: "#",
+      email: "rohith@cirakas.com"
+    }
+  ], []);
+
+  // Optimized handlers with useCallback
+  const handleMouseEnter = useCallback(() => setIsPaused(true), []);
+  const handleMouseLeave = useCallback(() => setIsPaused(false), []);
+
+  // Optimized image loading handler
+  const handleImageLoad = useCallback((id) => {
+    setLoadedImages(prev => new Set(prev).add(id));
+  }, []);
+
+  // Optimized error handler
+  const handleImageError = useCallback((e) => {
+    e.target.style.display = 'none';
+    const fallback = e.target.nextElementSibling;
+    if (fallback) {
+      fallback.style.display = 'flex';
+    }
+  }, []);
+
+  // Memoized team member card component
+  const TeamMemberCard = useCallback(({ member, setId }) => (
+    <div
+      className="group relative flex-shrink-0 team-card"
+      style={{ width: '320px' }}
+    >
+      <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-2">
+        {/* Image Container */}
+        <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden flex items-center justify-center">
+          <img 
+            src={member.image} 
+            alt={member.name}
+            className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            onLoad={() => handleImageLoad(member.id)}
+            onError={handleImageError}
+            loading="lazy"
+          />
+          <div className="hidden absolute inset-0 bg-gradient-to-br from-blue-400 to-indigo-600 items-center justify-center text-white text-6xl font-bold">
+            {member.name.charAt(0)}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 bg-white">
+          <h3 className="text-xl font-bold text-gray-900 mb-1">
+            {member.name}
+          </h3>
+          <p className="text-gray-600 text-sm font-medium">
+            • {member.role}
+          </p>
         </div>
       </div>
-      <p className="text-gray-300 text-sm leading-relaxed">{testimonial.text}</p>
     </div>
-  );
+  ), [handleImageLoad, handleImageError]);
 
   return (
-    <div className=" py-16">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl  text-gray-900 mb-2">Trusted by Innovators<span className='text-orange-500'>.</span></h1>
-      </div>
-      
-      <div className="relative overflow-hidden">
-        {/* First row - moving left */}
-        <div className="flex animate-marquee mb-6">
-          {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <TestimonialCard key={`row1-${index}`} testimonial={testimonial} />
-          ))}
+    <section className="py-12 overflow-hidden">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 sec-font">
+            Meet Our Team
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            We're a passionate team of innovators, designers, and developers dedicated to creating exceptional digital experiences that drive business growth.
+          </p>
         </div>
-        
-        {/* Second row - moving right */}
-        <div className="flex animate-marquee-reverse">
-          {[...testimonials, ...testimonials].map((testimonial, index) => (
-            <TestimonialCard key={`row2-${index}`} testimonial={testimonial} />
-          ))}
+
+        {/* Infinite Marquee Container */}
+        <div 
+          className="marquee-container"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className={`marquee-track ${isPaused ? 'paused' : ''}`}>
+            {/* First set of team members */}
+            <div className="marquee-set">
+              {teamMembers.map((member) => (
+                <TeamMemberCard key={`set1-${member.id}`} member={member} setId="set1" />
+              ))}
+            </div>
+            
+            {/* Gap between sets */}
+            <div className="marquee-gap"></div>
+            
+            {/* Duplicate set for seamless loop */}
+            <div className="marquee-set">
+              {teamMembers.map((member) => (
+                <TeamMemberCard key={`set2-${member.id}`} member={member} setId="set2" />
+              ))}
+            </div>
+          </div>
         </div>
+
+        {/* Optimized CSS */}
+        <style>{`
+          .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 2rem;
+          }
+
+          .marquee-track {
+            display: flex;
+            width: fit-content;
+            animation: seamless-marquee 80s linear infinite;
+            will-change: transform;
+            transform: translateZ(0);
+          }
+
+          .marquee-track.paused {
+            animation-play-state: paused;
+          }
+
+          .marquee-set {
+            display: flex;
+            gap: 2rem;
+            flex-shrink: 0;
+          }
+
+          .marquee-gap {
+            width: 2rem;
+            flex-shrink: 0;
+          }
+
+          .team-card {
+            will-change: transform;
+            transform: translateZ(0);
+          }
+
+          @keyframes seamless-marquee {
+            from {
+              transform: translateX(0) translateZ(0);
+            }
+            to {
+              transform: translateX(calc(-50% - 2rem)) translateZ(0);
+            }
+          }
+
+          /* Optimize for reduced motion */
+          @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+              animation: none;
+            }
+            
+            .team-card:hover {
+              transform: none;
+            }
+          }
+        `}</style>
       </div>
-      
-      <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        
-        @keyframes marquee-reverse {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-        
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-        
-        .animate-marquee-reverse {
-          animation: marquee-reverse 30s linear infinite;
-        }
-      `}</style>
-    </div>
+    </section>
   );
 };
 
