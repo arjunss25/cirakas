@@ -35,7 +35,7 @@ const TestimonialMarquee = () => {
     {
       id: 5,
       name: "Usman N",
-      role: "Secretary to the CEO",
+      role: "Secretary to the Director",
       image: "/usman.svg",
       linkedin: "#",
       twitter: "#",
@@ -44,7 +44,7 @@ const TestimonialMarquee = () => {
     {
       id: 6,
       name: "Sreejith K J",
-      role: "Secretary to the CTO",
+      role: "Secretary to the Director",
       image: "/sreejth.svg",
       linkedin: "#",
       twitter: "#",
