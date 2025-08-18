@@ -31,15 +31,15 @@ const Footer = () => {
             <SiLinkedin />
             </a>
             {/* X (Twitter) */}
-            <a target="_blank" rel="noopener noreferrer" className="bg-[#FF4B26] rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#e63e1d] transition-colors duration-300">
+            {/* <a target="_blank" rel="noopener noreferrer" className="bg-[#FF4B26] rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#e63e1d] transition-colors duration-300">
             <FaXTwitter />
-            </a>
+            </a> */}
             {/* Facebook */}
-            <a  target="_blank" rel="noopener noreferrer" className="bg-[#FF4B26] rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#e63e1d] transition-colors duration-300">
+            <a href='https://www.facebook.com/profile.php?id=100088813496171' target="_blank" rel="noopener noreferrer" className="bg-[#FF4B26] rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#e63e1d] transition-colors duration-300">
             <FaFacebook />
             </a>
             {/* Instagram */}
-            <a  target="_blank" rel="noopener noreferrer" className="bg-[#FF4B26] rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#e63e1d] transition-colors duration-300">
+            <a href='https://www.instagram.com/cirakas?utm_source=qr&igsh=aGEwZmE2MjQ2bnJi' target="_blank" rel="noopener noreferrer" className="bg-[#FF4B26] rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#e63e1d] transition-colors duration-300">
             <FaInstagram />
             </a>
           </div>

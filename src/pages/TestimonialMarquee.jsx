@@ -10,7 +10,7 @@ const TestimonialMarquee = () => {
       name: "Harish Nair",
       role: "Director",
       image: "/harish.svg",
-      linkedin: "#",
+      linkedin: "http://www.linkedin.com/in/reachhkn",
       twitter: "#",
       email: "harish@cirakas.com"
     },
@@ -19,7 +19,7 @@ const TestimonialMarquee = () => {
       name: "Dr. Rajalekshmi S",
       role: "Head of Projects & Operations",
       image: "/raji.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/raji-harish-60bb4a151?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "rajalekshmi@cirakas.com"
     },
@@ -28,7 +28,7 @@ const TestimonialMarquee = () => {
       name: "Samir Sirajudeen",
       role: "Office Admin",
       image: "/samir.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/samir-sirajudeen-8773b51b0/",
       twitter: "#",
       email: "samir@cirakas.com"
     },
@@ -37,7 +37,7 @@ const TestimonialMarquee = () => {
       name: "Usman N",
       role: "Secretary to the Director",
       image: "/usman.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/usman-nazir-895050226?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "usman@cirakas.com"
     },
@@ -55,7 +55,7 @@ const TestimonialMarquee = () => {
       name: "Minu S",
       role: "Test Engineer",
       image: "/minu.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/minu-s-142a45350/",
       twitter: "#",
       email: "minu@cirakas.com"
     },
@@ -64,7 +64,7 @@ const TestimonialMarquee = () => {
       name: "Naina Sayed",
       role: "Senior Software Engineer",
       image: "/naina.svg",
-      linkedin: "#",
+      linkedin: "https://in.linkedin.com/in/naina-sayed?utm_source=share&utm_medium=member_mweb&utm_campaign=share_via&utm_content=profile",
       twitter: "#",
       email: "naina@cirakas.com"
     },
@@ -73,7 +73,7 @@ const TestimonialMarquee = () => {
       name: "Amal Babu",
       role: "Mobile Developer",
       image: "/amal.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/amal-babu-b75537212?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "amal@cirakas.com"
     },
@@ -82,7 +82,7 @@ const TestimonialMarquee = () => {
       name: "Gokul Suresh",
       role: "Software Developer",
       image: "/gokul.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/gokul-dev1/",
       twitter: "#",
       email: "gokul@cirakas.com"
     },
@@ -91,7 +91,7 @@ const TestimonialMarquee = () => {
       name: "Tibu Padmakumar",
       role: "Technical Project Manager",
       image: "/tibu.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/tibu-padmakumar-50370393?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "tibu@cirakas.com"
     },
@@ -100,7 +100,7 @@ const TestimonialMarquee = () => {
       name: "Aravind A Sajeev",
       role: "UI/UX Designer",
       image: "/aravind.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/aravindasajeev?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "aravind@cirakas.com"
     },
@@ -109,7 +109,7 @@ const TestimonialMarquee = () => {
       name: "Arjun S S",
       role: "Front-End Developer",
       image: "/arjun.svg",
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/arjun-s-s-85b610261?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       twitter: "#",
       email: "arjun@cirakas.com"
     },
@@ -118,6 +118,14 @@ const TestimonialMarquee = () => {
       name: "Rohith Gomez",
       role: "Python Developer",
       image: "/rohith.svg",
+      linkedin: "https://www.linkedin.com/in/rohithjoseph11?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      twitter: "#",
+      email: "rohith@cirakas.com"
+    },
+    {  id: 15,
+      name: "TSERING CHOSPAL",
+      role: "House Keeping",
+      image: "/tsering.svg",
       linkedin: "#",
       twitter: "#",
       email: "rohith@cirakas.com"
@@ -142,11 +150,20 @@ const TestimonialMarquee = () => {
     }
   }, []);
 
+  // LinkedIn redirect handler
+  const handleLinkedInClick = useCallback((linkedinUrl) => {
+    if (linkedinUrl && linkedinUrl !== "#") {
+      window.open(linkedinUrl, '_blank', 'noopener,noreferrer');
+    }
+  }, []);
+
   // Memoized team member card component
   const TeamMemberCard = useCallback(({ member, setId }) => (
     <div
-      className="group relative flex-shrink-0 team-card"
+      className="group relative flex-shrink-0 team-card cursor-pointer"
       style={{ width: '320px' }}
+      onClick={() => handleLinkedInClick(member.linkedin)}
+      title={`View ${member.name}'s LinkedIn profile`}
     >
       <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 transform hover:-translate-y-2">
         {/* Image Container */}
@@ -172,10 +189,17 @@ const TestimonialMarquee = () => {
           <p className="text-gray-600 text-sm font-medium">
             • {member.role}
           </p>
+          {/* LinkedIn indicator */}
+          <div className="mt-3 flex items-center text-blue-600 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
+            </svg>
+            View LinkedIn Profile
+          </div>
         </div>
       </div>
     </div>
-  ), [handleImageLoad, handleImageError]);
+  ), [handleImageLoad, handleImageError, handleLinkedInClick]);
 
   return (
     <section className="py-12 overflow-hidden">
