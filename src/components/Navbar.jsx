@@ -152,7 +152,7 @@ const Navbar = () => {
       },
     },
     open: {
-      clipPath: "circle(150% at calc(100% - 32px) 32px)",
+      clipPath: "polygon(0 0, calc(100% - 80px) 0, calc(100% - 80px) 80px, 100% 80px, 100% 100%, 0 100%)",
       transition: {
         type: "spring",
         stiffness: 400,
@@ -242,7 +242,7 @@ const Navbar = () => {
         </motion.div>
 
         {/* Modern Animated Menu Button */}
-        <div className="lg:hidden relative z-50">
+        <div className="lg:hidden relative z-[600]">
           <motion.button
             onClick={toggleMenu}
             className="relative w-10 h-10 flex items-center justify-center"
@@ -318,7 +318,8 @@ const Navbar = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 bg-gradient-to-br from-white via-white/95 to-gray-50 z-[400] lg:hidden overflow-hidden"
+            className="fixed top-0 left-0 right-0 bottom-0 bg-gradient-to-br from-white via-white/95 to-gray-50 z-[400] lg:hidden overflow-hidden"
+
           >
             <motion.div
               className="h-full flex flex-col justify-center items-center p-6 space-y-6"
