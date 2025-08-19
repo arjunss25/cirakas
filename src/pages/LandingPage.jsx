@@ -25,7 +25,7 @@ const LandingPage = () => {
     }
   };
 
-  const words = ["More", "Than", "Colleagues,", "We're", "Family", "."];
+  const words = ["More", "Than", "Colleagues,", "We're a", "Family", "."];
 
   return (
     <motion.div 

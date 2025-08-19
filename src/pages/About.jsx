@@ -91,7 +91,7 @@ const About = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Let's Know Us
+          Get to Know Us
           <motion.span 
             className="text-[1.2rem] sm:text-[1.5rem]"
             animate={{ rotate: [0, 360] }}
