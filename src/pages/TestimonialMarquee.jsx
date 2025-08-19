@@ -102,7 +102,7 @@ const TestimonialMarquee = () => {
       image: "/aravind.svg",
       linkedin: "https://www.linkedin.com/in/aravindasajeev?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
-      email: "aravind@cirakas.com"
+      email: ""
     },
     {
       id: 13,
