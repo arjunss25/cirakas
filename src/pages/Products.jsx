@@ -114,7 +114,7 @@ const ProductsShowcase = () => {
   const projects = useMemo(() => [
     {
       id: '01',
-      title: 'Heart Flow Med',
+      title: 'HeartFlowMed',
       description: 'Heart Flow Med',
       images: [
         '/HFM- Ver_Blue Logo- Horizontal.svg',
