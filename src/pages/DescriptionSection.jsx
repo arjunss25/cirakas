@@ -50,7 +50,7 @@ const DescriptionSection = () => {
                 <h1 className='text-[1.1rem] sm:text-[1.25rem] md:text-[1.5rem] text-center md:text-left font-medium'>From daily catch-ups to group celebrations, our bond goes beyond the workplace. We grow together, laugh together, and always have <span className='text-[#FF4B26]'>each other’s back</span>.</h1>
             </div>
             <div className="img-section w-full md:w-auto flex justify-center md:justify-end order-1 md:order-2 mb-4 md:mb-0">
-                <img className='w-full max-w-xs sm:max-w-md md:w-[30rem]' src="/nw2.png" alt="" />
+                <img className='w-full max-w-xs sm:max-w-md md:w-[30rem]' src="/about-img 1.png" alt="" />
             </div>
         </motion.div>
         
