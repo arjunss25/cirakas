@@ -74,6 +74,12 @@ const Contact = () => {
     return !Object.values(newErrors).some(error => error !== '');
   };
 
+  // Function to detect mobile devices
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+           (window.innerWidth <= 768);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -88,11 +94,15 @@ const Contact = () => {
       const subject = encodeURIComponent('Contact from Cirakas Website');
       const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
       
-      // Redirect to Gmail compose with pre-filled content
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@cirakas.com&su=${subject}&body=${body}`;
-      
-      // Open Gmail in a new tab
-      window.open(gmailUrl, '_blank');
+      if (isMobileDevice()) {
+        // For mobile devices, use mailto: protocol to open native mail app
+        const mailtoUrl = `mailto:info@cirakas.com?subject=${subject}&body=${body}`;
+        window.location.href = mailtoUrl;
+      } else {
+        // For desktop/laptop devices, use Gmail web interface
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=info@cirakas.com&su=${subject}&body=${body}`;
+        window.open(gmailUrl, '_blank');
+      }
       
       // Reset form after successful submission
       setFormData({ name: '', email: '', message: '' });
@@ -117,8 +127,8 @@ const Contact = () => {
 
   return (
     <div className="w-full flex justify-center items-center  pb-8 px-4" id="contact-section">
-      <div className="w-full lg:w-[80%] bg-[url(/contact.png)] bg-no-repeat bg-cover bg-center flex flex-col items-center py-32 sm:py-20 rounded-[60px] lg:rounded-[20rem]">
-        <h2 className="text-white text-5xl font-bold mb-8 text-center">
+      <div className="w-full lg:w-[80%] bg-[url(/contact.png)] bg-no-repeat bg-cover bg-center flex flex-col items-center py-10 sm:py-20 rounded-[20px] sm:rounded-[60px] lg:rounded-[20rem]">
+        <h2 className="text-white text-3xl sm:text-5xl font-bold mb-8 text-center">
           Get In Touch<span className="text-[#ff5722]">.</span>
         </h2>
         <form onSubmit={handleSubmit} className="w-[80%] md:w-[60%] flex flex-col gap-4 items-center">

@@ -9,7 +9,7 @@ const TestimonialMarquee = () => {
       id: 1,
       name: "Harish Nair",
       role: "Director",
-      image: "/harish.svg",
+      image: "/harish.png",
       linkedin: "http://www.linkedin.com/in/reachhkn",
       twitter: "#",
       email: "harish@cirakas.com"
@@ -18,7 +18,7 @@ const TestimonialMarquee = () => {
       id: 3,
       name: "Dr. Rajalekshmi S",
       role: "Head of Projects & Operations",
-      image: "/raji.svg",
+      image: "/raji.png",
       linkedin: "https://www.linkedin.com/in/raji-harish-60bb4a151?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "rajalekshmi@cirakas.com"
@@ -27,7 +27,7 @@ const TestimonialMarquee = () => {
       id: 4,
       name: "Samir Sirajudeen",
       role: "Office Admin",
-      image: "/samir.svg",
+      image: "/samir.png",
       linkedin: "https://www.linkedin.com/in/samir-sirajudeen-8773b51b0/",
       twitter: "#",
       email: "samir@cirakas.com"
@@ -36,7 +36,7 @@ const TestimonialMarquee = () => {
       id: 5,
       name: "Usman N",
       role: "Secretary to the Director",
-      image: "/usman.svg",
+      image: "/usman.png",
       linkedin: "https://www.linkedin.com/in/usman-nazir-895050226?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: ""
@@ -45,7 +45,7 @@ const TestimonialMarquee = () => {
       id: 6,
       name: "Sreejith K J",
       role: "Secretary to the Director",
-      image: "/sreejth.svg",
+      image: "/sreejth.png",
       linkedin: "#",
       twitter: "#",
       email: "sreejith@cirakas.com"
@@ -54,7 +54,7 @@ const TestimonialMarquee = () => {
       id: 7,
       name: "Minu S",
       role: "Test Engineer",
-      image: "/minu.svg",
+      image: "/minu.png",
       linkedin: "https://www.linkedin.com/in/minu-s-142a45350/",
       twitter: "#",
       email: "minu@cirakas.com"
@@ -63,7 +63,7 @@ const TestimonialMarquee = () => {
       id: 8,
       name: "Naina Sayed",
       role: "Senior Software Engineer",
-      image: "/naina.svg",
+      image: "/naina.png",
       linkedin: "https://in.linkedin.com/in/naina-sayed?utm_source=share&utm_medium=member_mweb&utm_campaign=share_via&utm_content=profile",
       twitter: "#",
       email: "naina@cirakas.com"
@@ -72,7 +72,7 @@ const TestimonialMarquee = () => {
       id: 9,
       name: "Amal Babu",
       role: "Mobile Developer",
-      image: "/amal.svg",
+      image: "/amal.png",
       linkedin: "https://www.linkedin.com/in/amal-babu-b75537212?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "amal@cirakas.com"
@@ -81,7 +81,7 @@ const TestimonialMarquee = () => {
       id: 10,
       name: "Gokul Suresh",
       role: "Software Developer",
-      image: "/gokul.svg",
+      image: "/gokul.png",
       linkedin: "https://www.linkedin.com/in/gokul-dev1/",
       twitter: "#",
       email: "gokul@cirakas.com"
@@ -90,7 +90,7 @@ const TestimonialMarquee = () => {
       id: 11,
       name: "Tibu Padmakumar",
       role: "Technical Project Manager",
-      image: "/tibu.svg",
+      image: "/tibu.png",
       linkedin: "https://www.linkedin.com/in/tibu-padmakumar-50370393?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: "tibu@cirakas.com"
@@ -99,7 +99,7 @@ const TestimonialMarquee = () => {
       id: 12,
       name: "Aravind A Sajeev",
       role: "UI/UX Designer",
-      image: "/aravind.svg",
+      image: "/aravind.png",
       linkedin: "https://www.linkedin.com/in/aravindasajeev?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
       twitter: "#",
       email: ""
@@ -108,7 +108,7 @@ const TestimonialMarquee = () => {
       id: 13,
       name: "Arjun S S",
       role: "Front-End Developer",
-      image: "/arjun.svg",
+      image: "/arjun.png",
       linkedin: "https://www.linkedin.com/in/arjun-s-s-85b610261?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       twitter: "#",
       email: "arjun@cirakas.com"
@@ -117,15 +117,15 @@ const TestimonialMarquee = () => {
       id: 14,
       name: "Rohith Gomez",
       role: "Python Developer",
-      image: "/rohith.svg",
+      image: "/rohith.png",
       linkedin: "https://www.linkedin.com/in/rohithjoseph11?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       twitter: "#",
       email: "rohith@cirakas.com"
     },
     {  id: 15,
-      name: "TSERING CHOSPAL",
+      name: "Tsering Chospal",
       role: "Employee Welfare Officer",
-      image: "/tsering.svg",
+      image: "/tsering.png",
       linkedin: "#",
       twitter: "#",
       email: "rohith@cirakas.com"

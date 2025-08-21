@@ -36,7 +36,7 @@ const Slider = () => {
   };
 
   return (
-    <div className='w-full p-4 sm:p-6 md:p-8 bg-white'>
+    <div className='w-full p-1 sm:p-6 md:p-8'>
       {/* main-title */}
       <div className="main-titlesection px-4 sm:px-10 pt-10 sm:pt-16 md:pt-20 flex justify-center">
         <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight sm:leading-tight md:leading-none font-medium text-center w-full sm:w-[60%]">
@@ -56,7 +56,7 @@ const Slider = () => {
       </div>
 
       {/* Infinite Marquee Arc Image Row */}
-      <div className="w-full overflow-hidden mt-12 px-4 h-[50vh] flex justify-center items-center">
+      <div className="w-full overflow-hidden mt-12 md:px-4 h-[50vh] flex justify-center items-center">
         <div 
           className="marquee-container"
           onMouseEnter={handleMouseEnter}
@@ -170,6 +170,13 @@ const Slider = () => {
           }
           to {
             transform: translateX(-50%);
+          }
+        }
+
+        /* Faster animation for mobile devices */
+        @media (max-width: 639px) {
+          .marquee-track {
+            animation-duration: 40s;
           }
         }
       `}</style>

@@ -188,7 +188,7 @@ const Navbar = () => {
       <nav className="w-full h-[12vh] flex items-center justify-between px-4 md:px-8 lg:px-16 relative z-50 bg-white/80 backdrop-blur-md">
         {/* Logo */}
         <motion.div
-          className="flex items-center cursor-pointer"
+          className="flex items-center cursor-pointer "
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -199,7 +199,7 @@ const Navbar = () => {
             }, isMenuOpen ? 300 : 0);
           }}
         >
-          <img src="/logo.png" alt="Cirakas Logo" className="h-6 md:h-8" />
+          <img src="/logo.png" alt="Cirakas Logo" className="h-10" />
         </motion.div>
 
         {/* Desktop Navigation Links */}

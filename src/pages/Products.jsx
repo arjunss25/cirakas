@@ -21,7 +21,7 @@ const ProjectCard = memo(({ project, isHovered, onMouseEnter, onMouseLeave }) =>
         <span className={`text-xs sm:text-sm font-medium whitespace-nowrap ${isHovered ? 'text-white' : ''}`}>
           Project <span className="text-[#FF4B26]">{project.id}</span>
         </span>
-        <h3 className={`text-lg sm:text-2xl truncate w-full ${isHovered ? 'text-white' : ''}`}>
+        <h3 className={`text-lg sm:text-2xl sm:truncate w-full text-center sm:text-left ${isHovered ? 'text-white' : ''}`}>
           {project.title}
         </h3>
       </div>
